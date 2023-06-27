@@ -1,5 +1,5 @@
 const unique_validation = async (field,Model,errCode, value, next) => {
-  await Model.findOne({[field] : value }) //[]동적으로 키값받기
+  await Model.findOne({where:{[field] : value }}) //[]동적으로 키값받기
     .then((data) => {
       if (data) {
         throw new Error(errCode);

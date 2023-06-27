@@ -13,6 +13,10 @@ const authMiddleware = async (userFieldNamesArray, req, res, next) => {
     const user = await Users.findOne({
       where: { EMAIL },
       attributes: userFieldNamesArray.concat("REFRESH_TOKEN"), //배열안에 REFRESH_TOKEN과 함께, 가져오고싶은 필드이름을 지정 (push는 길이반환 , concat은 배열반환)
+      // userFieldNamesArray = ["USER_ID","EMAIL","PASSWORD","NICKNAME","createdAt"]
+      // authMiddleware를 사용하는 사람이 추가해야하는 배열 = userFieldNamesArray
+      // 실제 배열["USER_ID","EMAIL","PASSWORD","NICKNAME","createdAt","REFRESHED_TOKEN"]
+      
     }); //
     if (!user) {
       res.clearCookie("Authorization");
