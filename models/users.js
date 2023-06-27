@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           isUnique: (value, next) => {
-            unique_validation("EMAIL", Users, 100, value, next);
+            unique_validation.call(Users,"EMAIL", 100, value, next);
           }, //email중첩 100
         },
       },
@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           isUnique: (value, next) => {
-            unique_validation("NICKNAME", Users, 101, value, next);
+            unique_validation.call(Users,"NICKNAME", 101, value, next);
           },
           // isUnique: function (nickname, next){
           //   USERS.findOne(({NICKNAME:nickname})).then(user=>{
